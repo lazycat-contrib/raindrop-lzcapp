@@ -31,7 +31,7 @@ services:
     environment:
       - RAINDROP_DATA_DIR=/data
       - RAINDROP_BIND=0.0.0.0:8080
-      - RAINDROP_PUBLIC_URL=${LAZYCAT_PUBLIC_URL}
+      - RAINDROP_PUBLIC_URL=https://${LAZYCAT_SUBDOMAIN}.${LAZYCAT_BOX_DOMAIN}
       - RAINDROP_DATABASE_URL=sqlite:///data/raindrop.db?mode=rwc
       - RAINDROP_SESSION_SECRET={{ stable_secret "raindrop_session_secret_v1" }}
       - RAINDROP_BOOTSTRAP_ADMIN_USERNAME={{ .U.admin_username }}
