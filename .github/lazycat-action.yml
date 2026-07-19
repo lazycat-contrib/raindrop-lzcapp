@@ -11,25 +11,11 @@ update:
   strategy: publish
   allow_downgrade: false
   version_source:
-    type: image
-    image: raindrop
+    type: git
 
 build:
   toolchains: []
   run_buildscript: false
-
-images:
-  - id: raindrop
-    target: service
-    service: raindrop
-    source: czyt/raindrop
-    channel: custom
-    sort: semver
-    tag_regex: '^v[0-9]+\.[0-9]+\.[0-9]+$'
-    version_regex: '^v(?P<version>[0-9]+\.[0-9]+\.[0-9]+)$'
-    version_template: '{version}'
-    delivery:
-      mode: lazycat
 
 stores:
   official:

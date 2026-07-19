@@ -27,9 +27,7 @@ services:
     # czyt/raindrop:v0.1.0
     # upstream: czyt/raindrop:v0.1.0
     image: registry.lazycat.cloud/czyt/czyt/raindrop:a9e4b35b6fb09948
-    user: "10001:10001"
-    setup_script: |
-      install -d -o 10001 -g 10001 -m 0700 /data
+    run_as: "10001:10001"
     environment:
       - RAINDROP_DATA_DIR=/data
       - RAINDROP_BIND=0.0.0.0:8080

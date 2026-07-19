@@ -1,8 +1,9 @@
 name: Publish LazyCat LPK
 
 on:
-  schedule:
-    - cron: "17 3 * * *"
+  push:
+    tags:
+      - "v*"
   workflow_dispatch:
 
 permissions:
