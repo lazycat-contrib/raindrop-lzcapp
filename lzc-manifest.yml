@@ -22,11 +22,11 @@ application:
             retryCount: 20
             retryIntervalMs: 300
             observerTimeoutMs: 10000
-
 services:
   raindrop:
     # czyt/raindrop:v0.1.0
-    image: czyt/raindrop:v0.1.0
+    # upstream: czyt/raindrop:v0.1.0
+    image: registry.lazycat.cloud/czyt/czyt/raindrop:a9e4b35b6fb09948
     user: "10001:10001"
     setup_script: |
       install -d -o 10001 -g 10001 -m 0700 /data
@@ -53,6 +53,5 @@ services:
       retries: 3
       start_period: 10s
     mem_limit: 1G
-
 usage: |
   安装时由懒猫设置向导生成首个管理员账号。首次打开应用时会自动填充并登录；订阅数据和 SQLite 数据库持久化在应用数据目录中。
