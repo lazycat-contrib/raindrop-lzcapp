@@ -1,0 +1,30 @@
+params:
+  - id: admin_username
+    type: string
+    name: Administrator username
+    description: Username used to initialize and sign in to the first Raindrop administrator account.
+    default_value: admin
+    optional: false
+
+  - id: admin_password
+    type: secret
+    name: Administrator password
+    description: Password used to initialize and automatically sign in to the first administrator account. At least 12 characters are required.
+    default_value: $random(len=24)
+    optional: false
+
+locales:
+  zh:
+    admin_username:
+      name: 管理员用户名
+      description: 用于初始化并登录首个 Raindrop 管理员账号。
+    admin_password:
+      name: 管理员密码
+      description: 用于初始化并自动登录首个管理员账号，至少需要 12 个字符。
+  en:
+    admin_username:
+      name: Administrator username
+      description: Username used to initialize and sign in to the first Raindrop administrator account.
+    admin_password:
+      name: Administrator password
+      description: Password used to initialize and automatically sign in to the first administrator account. At least 12 characters are required.

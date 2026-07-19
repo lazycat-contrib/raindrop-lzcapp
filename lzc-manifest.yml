@@ -1,0 +1,58 @@
+application:
+  subdomain: raindrop
+  upstreams:
+    - location: /
+      backend: http://raindrop:8080/
+  public_path:
+    - /
+  injects:
+    - id: raindrop-login-autofill
+      on: browser
+      when:
+        - /*
+      do:
+        - src: builtin://simple-inject-password
+          params:
+            user: "{{ .U.admin_username }}"
+            password: "{{ .U.admin_password }}"
+            userSelector: "input[name='login']"
+            passwordSelector: "input[name='password']"
+            submitSelector: "button[type='submit']"
+            autoSubmit: true
+            retryCount: 20
+            retryIntervalMs: 300
+            observerTimeoutMs: 10000
+
+services:
+  raindrop:
+    # czyt/raindrop:v0.1.0
+    image: czyt/raindrop:v0.1.0
+    user: "10001:10001"
+    setup_script: |
+      install -d -o 10001 -g 10001 -m 0700 /data
+    environment:
+      - RAINDROP_DATA_DIR=/data
+      - RAINDROP_BIND=0.0.0.0:8080
+      - RAINDROP_PUBLIC_URL=${LAZYCAT_PUBLIC_URL}
+      - RAINDROP_DATABASE_URL=sqlite:///data/raindrop.db?mode=rwc
+      - RAINDROP_SESSION_SECRET={{ stable_secret "raindrop_session_secret_v1" }}
+      - RAINDROP_BOOTSTRAP_ADMIN_USERNAME={{ .U.admin_username }}
+      - RAINDROP_BOOTSTRAP_ADMIN_PASSWORD={{ .U.admin_password }}
+    binds:
+      - /lzcapp/var/data:/data
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - --fail
+        - --silent
+        - --show-error
+        - http://127.0.0.1:8080/api/v1/health/live
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    mem_limit: 1G
+
+usage: |
+  安装时由懒猫设置向导生成首个管理员账号。首次打开应用时会自动填充并登录；订阅数据和 SQLite 数据库持久化在应用数据目录中。

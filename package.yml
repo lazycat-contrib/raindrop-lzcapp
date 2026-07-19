@@ -1,0 +1,20 @@
+package: community.lazycat.app.raindrop
+version: 0.1.0
+name: Raindrop
+description: A self-hosted, multi-user RSS reader with a focused reading experience.
+author: ca-x
+license: MIT
+homepage: https://github.com/ca-x/raindrop
+min_os_version: 1.5.0
+
+permissions:
+  required:
+    - net.internet
+
+locales:
+  zh:
+    name: Raindrop
+    description: 一款自托管、多用户的 RSS 阅读器，提供专注且高效的阅读体验。
+  en:
+    name: Raindrop
+    description: A self-hosted, multi-user RSS reader with a focused reading experience.
