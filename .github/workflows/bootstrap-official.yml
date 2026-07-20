@@ -1,0 +1,28 @@
+name: Bootstrap official listing
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Existing LazyCat LPK Release version to submit
+        required: true
+        default: "0.3.0"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout application
+        uses: actions/checkout@v7
+
+      - name: Submit first official listing
+        env:
+          GH_TOKEN: ${{ github.token }}
+          LAZYCAT_TOKEN: ${{ secrets.LAZYCAT_TOKEN }}
+          PACKAGE_ID: community.lazycat.app.raindrop
+          VERSION: ${{ inputs.version }}
+        run: bash scripts/bootstrap-official-listing.sh

@@ -2,6 +2,14 @@
 
 Raindrop 是一款自托管、多用户的 RSS 阅读器。本仓库将上游 Docker 镜像打包为 LazyCat LPK v2，并通过 GitHub Actions 同时发布到懒猫官方应用商店和私有应用商店。
 
+## 界面预览
+
+![Raindrop 桌面端阅读界面](screenshots/reader-desktop.png)
+
+<p align="center">
+  <img src="screenshots/reader-mobile.png" width="360" alt="Raindrop 移动端阅读界面">
+</p>
+
 ## 安装体验
 
 - 安装时由懒猫设置向导创建管理员用户名和随机密码。
@@ -26,6 +34,8 @@ lzc-cli lpk info .lazycat-build/raindrop.lpk
 ## Automated publishing
 
 `.github/workflows/lazycat.yml` 使用 `ca-x/lazycat-github-action@v1` 检查 Docker Hub 的稳定版本、复制镜像到懒猫官方 Registry、创建版本化 GitHub Release Asset，并分别同步两个应用商店。
+
+首次创建官方商店条目时，手动运行 `Bootstrap official listing` 工作流；它会复用同一份 Release LPK，并提交中英文介绍、桌面/移动支持声明和真实应用截图。后续版本继续由主发布工作流处理。
 
 工作流需要以下 GitHub Secrets；Secret 值不得提交到仓库：
 
