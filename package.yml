@@ -1,5 +1,5 @@
 package: community.lazycat.app.raindrop
-version: 0.3.7
+version: 0.3.8
 name: Raindrop
 description: A self-hosted, multi-user RSS reader with a focused reading experience.
 author: ca-x
