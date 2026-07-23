@@ -9,7 +9,7 @@ application:
     - id: raindrop-login-autofill
       on: browser
       when:
-        - /*
+        - /login/*
       do:
         - src: builtin://simple-inject-password
           params:
