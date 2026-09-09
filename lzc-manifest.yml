@@ -5,19 +5,7 @@ application:
       backend: http://raindrop:8080/
   public_path:
     - /
-    - "!/login"
   injects:
-    # A SPA navigation to /login does not pass through gateway authentication.
-    # Reload only anonymous login pages so the protected route acquires SAFE_UID.
-    - id: raindrop-login-identity
-      on: browser
-      auth_required: false
-      when:
-        - /login
-      do: |
-        if (!ctx.safe_uid) {
-          window.location.reload();
-        }
     - id: raindrop-login-autofill
       on: browser
       when:
