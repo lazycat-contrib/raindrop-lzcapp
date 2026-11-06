@@ -26,8 +26,8 @@ application:
 services:
   raindrop:
     # czyt/raindrop:v0.1.0
-    # upstream: czyt/raindrop:v0.6.5
-    image: registry.lazycat.cloud/czyt/czyt/raindrop:4ac6e763aa339853
+    # upstream: czyt/raindrop:v0.6.6
+    image: registry.lazycat.cloud/czyt/czyt/raindrop:dafc243522eb778a
     user: root
     environment:
       - RAINDROP_DATA_DIR=/data
